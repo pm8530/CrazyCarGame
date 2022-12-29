@@ -31,7 +31,12 @@ public class VolumeControler : MonoBehaviour
     
     public void Load()
     {
+        if(PlayerPrefs.HasKey("musicVolume"))
         VolumeSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        else
+        {
+            VolumeSlider.value = VolumeSlider.maxValue;
+        }
     }
 
 
@@ -40,4 +45,9 @@ public class VolumeControler : MonoBehaviour
         PlayerPrefs.SetFloat("musicVolume", VolumeSlider.value);
     }
 
+    [ContextMenu("Delete All Data")]
+    public void DeleteAllSaveData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

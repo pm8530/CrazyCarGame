@@ -8,6 +8,7 @@ public class score : MonoBehaviour
     public static score instance;
 
     public TextMeshProUGUI scoretext;
+    public TextMeshProUGUI gameCurrentScore;
     public TextMeshProUGUI coinText;
 
     public TextMeshProUGUI highScore;
@@ -34,7 +35,7 @@ public class score : MonoBehaviour
 
     private void Update()
     {
-        scoretext.text = Score.ToString("0");
+        scoretext.text = ((int) Score).ToString();
 
 
 
@@ -45,17 +46,18 @@ public class score : MonoBehaviour
            PlayerPrefs.SetInt("HighScore",((int) Score));
             highScore.text = "High Score: " + PlayerPrefs.GetInt("HighScore").ToString();
         }
-        
 
+        gameCurrentScore.text = ((int)Score).ToString();
     }
 
 
-
+    
     public void IncreaseCoin()
     {
         Debug.Log(" coin");
-        coinText.text = ((int)coinscore).ToString();
+        
         coinscore += increasescore ;
+        coinText.text = ((int)coinscore).ToString();
     }
 
 }
